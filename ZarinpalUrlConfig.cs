@@ -1,0 +1,17 @@
+﻿namespace Zarinpal.Api
+{
+    internal static class ZarinpalUrlConfig
+    {
+        private const string RequestUrl = "https://{0}zarinpal.com/pg/rest/WebGate/PaymentRequest.json";
+        private const string PgUrl = "https://{0}zarinpal.com/pg/StartPay/{1}/ZarinGate";
+        private const string VerificationUrl = "https://{0}zarinpal.com/pg/rest/WebGate/PaymentVerification.json";
+        private const string SandBoxPerfix = "sandbox.";
+        private const string WwwPerfix = "www.";
+
+        public static string GetPaymentRequestUrl(bool useSanbox) => string.Format(RequestUrl, useSanbox ? SandBoxPerfix : WwwPerfix);
+
+        public static string GetPaymenGatewayUrl(string authority, bool useSanbox) => string.Format(PgUrl, useSanbox ? SandBoxPerfix : WwwPerfix, authority);
+
+        public static string GetVerificationUrl(bool useSanbox) => string.Format(VerificationUrl, useSanbox ? SandBoxPerfix : WwwPerfix);
+    }
+}
