@@ -35,7 +35,7 @@ namespace Zarinpal.Test.WebApp.Controllers
                 Description = "tozihat",
                 CallbackUrl = "https://localhost:44343/home/PaymentResult",
                 Email = "name@email.com",
-                Mobile = "09173148953"
+                Mobile = "*****"
             };
             var t = await _zarinpal.InvokePaymentAsync(model);
 
@@ -48,7 +48,6 @@ namespace Zarinpal.Test.WebApp.Controllers
         public IActionResult PaymentResult(string authority, string status)
         {
             var t = long.Parse(authority);
-            System.IO.File.WriteAllText("E:\\pay.txt", t + Environment.NewLine + status);
             var result = _zarinpal.InvokePaymentVerification(new ZarinpalPaymentVerificationModel(2000, authority));
 
             if (result.Succeeded)
