@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -62,8 +62,6 @@ namespace Zarinpal.Api
                 });
             }
 
-            //if(httpResponse.StatusCode == HttpStatusCode.BadRequest) { }
-
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream() ?? throw new InvalidOperationException()))
             {
                 var result = streamReader.ReadToEnd();
@@ -92,12 +90,12 @@ namespace Zarinpal.Api
             {
                 httpResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
             }
-            catch
+            catch (Exception e)
             {
                 return ZarinpalResult<string>.Failed(new ZarinpalError
                 {
                     Code = "-1000",
-                    Description = "Server not found!"
+                    Description = $"Server not found! {e}"
                 });
             }
 
@@ -155,12 +153,11 @@ namespace Zarinpal.Api
         public ZarinpalResult<ZarinpalVerificationResponseModel> InvokePaymentVerification(ZarinpalPaymentVerificationModel model)
         {
             var errors = new List<ZarinpalError>();
+            model = new ZarinpalPaymentVerificationModel(_configuration.Token, model.Amount, model.Authority);
             model.ValidateModel(errors);
 
             if (errors.Any())
                 return ZarinpalResult<ZarinpalVerificationResponseModel>.Failed(errors.ToArray());
-
-            model = new ZarinpalPaymentVerificationModel(_configuration.Token, model.Amount, model.Authority);
 
             var response = StartPayment(model, ZarinpalRequestMethod.Post, _verifyUrl);
 
@@ -177,6 +174,8 @@ namespace Zarinpal.Api
         public async Task<ZarinpalResult<ZarinpalVerificationResponseModel>> InvokePaymentVerificationAsync(ZarinpalPaymentVerificationModel model)
         {
             var errors = new List<ZarinpalError>();
+
+            model = new ZarinpalPaymentVerificationModel(_configuration.Token, model.Amount, model.Authority);
             model.ValidateModel(errors);
 
             if (errors.Any())
