@@ -1,7 +1,7 @@
-###Msh.Zarinpal.Api
+#### Msh.Zarinpal.Api
 A light weight library to help online payment using *[Zarinpal](https://www.zarinpal.com)* for `.NET core 2.2` web application.
 
-####Installation
+#### Installation
 You can download the latest version of `Msh.Zarinpal.Api` from [Github repository](https://github.com/hrsh/Msh.Zarinpal.Api).
 To install via `nuget`:
 ```
@@ -9,7 +9,7 @@ Install-Package Msh.Zarinpal.Api -Version 1.0.0
 ```
 Install from [Nuget](https://www.nuget.org/packages/Msh.Zarinpal.Api/) directly.
 
-####How to use
+#### How to use
 Add these codes to `startup.cs` file:
 ```
 using Zarinpal.Api;
