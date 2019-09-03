@@ -37,12 +37,10 @@ using Zarinpal.Api.Models;
 ...
     public class HomeController : Controller
     {
-        private readonly IOptionsSnapshot<ZarinpalConfiguration> options;
         private readonly IZarinpalProvider _zarinpal;
 
-        public HomeController(IOptionsSnapshot<ZarinpalConfiguration> options, IZarinpalProvider zarinpal)
+        public HomeController(IZarinpalProvider zarinpal)
         {
-            _options = options;
             _zarinpal = zarinpal;
         }
 
