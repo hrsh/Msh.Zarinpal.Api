@@ -11,7 +11,7 @@ Install from [Nuget](https://www.nuget.org/packages/Msh.Zarinpal.Api/) directly.
 
 #### How to use
 Add these codes to `startup.cs` file:
-```
+``` C#
 using Zarinpal.Api;
 using Zarinpal.Api.Models;
 ...
@@ -24,14 +24,14 @@ using Zarinpal.Api.Models;
 ...
 ```
 and some where in `appsettings.json`
-```
+``` json
   "ZarinpalConfig": {
     "Token": "Put your api token here",
     "UseSandbox": false
   }
 ```
 in `controller`:
-```
+``` C#
 using Zarinpal.Api;
 using Zarinpal.Api.Models;
 ...
@@ -80,4 +80,5 @@ using Zarinpal.Api.Models;
             return BadRequest(result.Errors);
         }
     }
+...
 ```
