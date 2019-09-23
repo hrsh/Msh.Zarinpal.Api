@@ -5,7 +5,7 @@ A light weight library *(with respect to [zarinpal-dotNet](https://github.com/Za
 You can download the latest version of `Msh.Zarinpal.Api` from [Github repository](https://github.com/hrsh/Msh.Zarinpal.Api).
 To install via `nuget`:
 ```
-Install-Package Msh.Zarinpal.Api -Version 1.0.0
+Install-Package Msh.Zarinpal.Api -Version 1.0.2
 ```
 Install from [Nuget](https://www.nuget.org/packages/Msh.Zarinpal.Api/) directly.
 
@@ -61,7 +61,7 @@ using Zarinpal.Api.Models;
                 Email = "Client email", 
                 Mobile = "Client mobile"
             };
-            var t = await _zarinpal.InvokePaymentAsync(model);
+            var t = await _zarinpal.PayAsync(model);
 
             if (t.Succeeded)
                 return Redirect(t.Result.PaymentUrl);
@@ -72,7 +72,7 @@ using Zarinpal.Api.Models;
         public IActionResult PaymentResult(string authority, string status)
         {
             var t = long.Parse(authority);
-            var result = _zarinpal.InvokePaymentVerification(new ZarinpalPaymentVerificationModel(2000, authority));
+            var result = _zarinpal.VerifyAsync(new ZarinpalPaymentVerificationModel(2000, authority));
 
             if (result.Succeeded)
                 return RedirectToAction("Index", new { referenceId = result.Result.ReferenceId });
