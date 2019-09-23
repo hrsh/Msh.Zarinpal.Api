@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace Zarinpal.Api
 {
@@ -6,7 +7,8 @@ namespace Zarinpal.Api
     {
         public static IServiceCollection AddZarinpal(this IServiceCollection service)
         {
-            service.AddScoped<IZarinpalProvider, ZarinpalProvider>();
+            service.AddHttpClient<IZarinpalProvider, ZarinpalProvider>();
+            service.AddSingleton<JsonSerializer>();
             return service;
         }
     }
