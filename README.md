@@ -69,10 +69,10 @@ using Zarinpal.Api.Models;
             return BadRequest(t.Errors);
         }
 
-        public IActionResult PaymentResult(string authority, string status)
+        public async Task<IActionResult> PaymentResult(string authority, string status)
         {
             var t = long.Parse(authority);
-            var result = _zarinpal.VerifyAsync(new ZarinpalPaymentVerificationModel(2000, authority));
+            var result = await _zarinpal.VerifyAsync(new ZarinpalPaymentVerificationModel(2000, authority));
 
             if (result.Succeeded)
                 return RedirectToAction("Index", new { referenceId = result.Result.ReferenceId });
