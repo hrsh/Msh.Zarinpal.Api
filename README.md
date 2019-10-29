@@ -5,7 +5,7 @@ A light weight library *(with respect to [zarinpal-dotNet](https://github.com/Za
 You can download the latest version of `Msh.Zarinpal.Api` from [Github repository](https://github.com/hrsh/Msh.Zarinpal.Api).
 To install via `nuget`:
 ```
-Install-Package Msh.Zarinpal.Api -Version 1.0.2
+Install-Package Msh.Zarinpal.Api -Version 1.0.3
 ```
 Install from [Nuget](https://www.nuget.org/packages/Msh.Zarinpal.Api/) directly.
 
@@ -27,7 +27,8 @@ and some where in `appsettings.json`
 ``` json
   "ZarinpalConfig": {
     "Token": "Put your api token here",
-    "UseSandbox": false
+    "UseSandbox": false,
+    "UseZarinLink":  true
   }
 ```
 in `controller`:
