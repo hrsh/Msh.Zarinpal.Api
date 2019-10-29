@@ -263,7 +263,9 @@ namespace Zarinpal.Api
                 return ZarinpalResult<ZarinpalPaymentResponseModel>.Failed(errors.ToArray());
             }
 
-            t.Result.PaymentUrl = ZarinpalUrlConfig.GetPaymenGatewayUrl(t.Result.Authority, false);
+            t.Result.PaymentUrl = _configuration.UseZarinLink ? 
+                ZarinpalUrlConfig.GetWebGateRequestUrl(t.Result.Authority, false) : 
+                ZarinpalUrlConfig.GetPaymenGatewayUrl(t.Result.Authority, false);
             t.Result.Validate(errors);
 
             return errors.Any()
