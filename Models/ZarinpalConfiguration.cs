@@ -5,5 +5,7 @@
         public string Token { get; set; }
 
         public bool UseSandbox { get; set; }
+        
+        public bool UseZarinLink { get; set; }
     }
 }
